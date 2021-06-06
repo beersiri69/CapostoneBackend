@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a5466feb5db4180b72631b22b41f2fb" Name="Diagram1">
+        <EntityTypeShape EntityType="CapstoneV3Model.Customer" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Deliver" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Depart_Location" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Driver" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Expense" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Income" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Payment" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Price" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Purchase_Order" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Staff" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Transac" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Transca" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneV3Model.Vehicle" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Payment_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Purchase_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Deliver_Depart_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Deliver_Driver" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Deliver_Purchase_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Deliver_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Purchase_Order_Depart_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Purchase_Order_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="CapstoneV3Model.FK_Purchase_Order_Staff" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

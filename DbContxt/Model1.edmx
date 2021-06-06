@@ -1,0 +1,883 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CapstoneV3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Taxpayer_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taxpayer_Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taxpayer_Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taxpayer_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taxpayer_Surname" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer_Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer_Surname" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer_Tel" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Deliver">
+          <Key>
+            <PropertyRef Name="Deliver_ID" />
+          </Key>
+          <Property Name="Deliver_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PO_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Truck_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Driver_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Arr_Date" Type="date" />
+          <Property Name="Arr_Time" Type="time" Precision="0" />
+          <Property Name="Location_ID" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Depart_Location">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Province" Type="nvarchar" MaxLength="255" />
+          <Property Name="District" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sub_District" Type="nvarchar" MaxLength="255" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="255" />
+          <Property Name="House_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone_Number" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="Driver_ID" />
+          </Key>
+          <Property Name="Driver_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Driver_Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Driver_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Driver_Surname" Type="nvarchar" MaxLength="255" />
+          <Property Name="Driver_Tel" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Expense" />
+          </Key>
+          <Property Name="Expense" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price_Per_day" Type="float" />
+        </EntityType>
+        <EntityType Name="Income">
+          <Key>
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="Begin_D(L)" Type="float" />
+          <Property Name="Begin_G(L)" Type="float" />
+          <Property Name="Begin_D(B)" Type="float" />
+          <Property Name="Begin_G(B)" Type="float" />
+          <Property Name="AmountSold_D(L)" Type="float" />
+          <Property Name="AmountSold_G(L)" Type="float" />
+          <Property Name="AmountSold_D(B)" Type="float" />
+          <Property Name="AmountSold_G(B)" Type="float" />
+          <Property Name="AmountPurchase_D(L)" Type="float" />
+          <Property Name="AmountPurchase_G(L)" Type="float" />
+          <Property Name="AmountPurchase_D(B)" Type="float" />
+          <Property Name="AmountPurchase_G(B)" Type="float" />
+          <Property Name="Balance_D(L)" Type="float" />
+          <Property Name="Balance_G(L)" Type="float" />
+          <Property Name="Balance_D(B)" Type="float" />
+          <Property Name="Balance_G(B)" Type="float" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="e_Bill_NO" />
+          </Key>
+          <Property Name="e_Bill_NO" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Customer_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Invoice_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Payment_Method" Type="nvarchar" MaxLength="255" />
+          <Property Name="Transfer_AC_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Transfer_AC_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Recieve_AC_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Recieve_AC_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Paid_Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Gasohol95_Cost" Type="float" />
+          <Property Name="Gasohol95_Price" Type="float" />
+          <Property Name="Diesel_Cost" Type="float" />
+          <Property Name="Diesel_Price" Type="float" />
+        </EntityType>
+        <EntityType Name="Purchase_Order">
+          <Key>
+            <PropertyRef Name="PO_NO" />
+          </Key>
+          <Property Name="PO_NO" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="e_Bill_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Location_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Staff_ID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Gas_type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Filling_time" Type="time" Precision="0" />
+          <Property Name="Fuel_Amount" Type="float" />
+          <Property Name="Order_Date" Type="date" />
+          <Property Name="Deliver_Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="255" />
+          <Property Name="Staff_Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Staff_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Staff_Surname" Type="nvarchar" MaxLength="255" />
+          <Property Name="Staff_Tel" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Transac">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="float" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Action" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Volume_D" Type="float" />
+          <Property Name="Volume_G" Type="float" />
+          <Property Name="Price_D" Type="float" />
+          <Property Name="Price_G" Type="float" />
+          <Property Name="Balance_D" Type="float" />
+          <Property Name="Balance_G" Type="float" />
+        </EntityType>
+        <EntityType Name="Transca">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="float" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Action" Type="nvarchar" MaxLength="255" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Volume" Type="float" />
+          <Property Name="Amount" Type="float" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Truck_NO" />
+          </Key>
+          <Property Name="Truck_NO" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="License_Plate" Type="nvarchar" MaxLength="255" />
+          <Property Name="Capacity" Type="float" />
+        </EntityType>
+        <Association Name="FK_Deliver_Depart_Location">
+          <End Role="Depart_Location" Type="Self.Depart_Location" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depart_Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Driver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_ID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="Driver_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Purchase_Order">
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase_Order">
+              <PropertyRef Name="PO_NO" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="PO_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Truck_NO" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="Truck_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Depart_Location">
+          <End Role="Depart_Location" Type="Self.Depart_Location" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depart_Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Payment">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="e_Bill_NO" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="e_Bill_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CapstoneV3ModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deliver" EntityType="Self.Deliver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Depart_Location" EntityType="Self.Depart_Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Income" EntityType="Self.Income" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase_Order" EntityType="Self.Purchase_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transac" EntityType="Self.Transac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transca" EntityType="Self.Transca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Deliver_Depart_Location" Association="Self.FK_Deliver_Depart_Location">
+            <End Role="Depart_Location" EntitySet="Depart_Location" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Driver" Association="Self.FK_Deliver_Driver">
+            <End Role="Driver" EntitySet="Driver" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Purchase_Order" Association="Self.FK_Deliver_Purchase_Order">
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Vehicle" Association="Self.FK_Deliver_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Customer" Association="Self.FK_Payment_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Customer" Association="Self.FK_Purchase_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Depart_Location" Association="Self.FK_Purchase_Order_Depart_Location">
+            <End Role="Depart_Location" EntitySet="Depart_Location" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Payment" Association="Self.FK_Purchase_Order_Payment">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Staff" Association="Self.FK_Purchase_Order_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CapstoneV3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Taxpayer_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taxpayer_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taxpayer_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taxpayer_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taxpayer_Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Tel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Payment_Customer" FromRole="Customer" ToRole="Payment" />
+          <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Purchase_Order_Customer" FromRole="Customer" ToRole="Purchase_Order" />
+        </EntityType>
+        <EntityType Name="Deliver">
+          <Key>
+            <PropertyRef Name="Deliver_ID" />
+          </Key>
+          <Property Name="Deliver_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PO_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Truck_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Driver_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Arr_Date" Type="DateTime" Precision="0" />
+          <Property Name="Arr_Time" Type="Time" Precision="0" />
+          <Property Name="Location_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Depart_Location" Relationship="Self.FK_Deliver_Depart_Location" FromRole="Deliver" ToRole="Depart_Location" />
+          <NavigationProperty Name="Driver" Relationship="Self.FK_Deliver_Driver" FromRole="Deliver" ToRole="Driver" />
+          <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Deliver_Purchase_Order" FromRole="Deliver" ToRole="Purchase_Order" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK_Deliver_Vehicle" FromRole="Deliver" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Depart_Location">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Province" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sub_District" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="House_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_Number" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Deliver" Relationship="Self.FK_Deliver_Depart_Location" FromRole="Depart_Location" ToRole="Deliver" />
+          <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Purchase_Order_Depart_Location" FromRole="Depart_Location" ToRole="Purchase_Order" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="Driver_ID" />
+          </Key>
+          <Property Name="Driver_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Driver_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Driver_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Driver_Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Driver_Tel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Deliver" Relationship="Self.FK_Deliver_Driver" FromRole="Driver" ToRole="Deliver" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Expense1" />
+          </Key>
+          <Property Name="Expense1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price_Per_day" Type="Double" />
+        </EntityType>
+        <EntityType Name="Income">
+          <Key>
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Begin_D_L_" Type="Double" />
+          <Property Name="Begin_G_L_" Type="Double" />
+          <Property Name="Begin_D_B_" Type="Double" />
+          <Property Name="Begin_G_B_" Type="Double" />
+          <Property Name="AmountSold_D_L_" Type="Double" />
+          <Property Name="AmountSold_G_L_" Type="Double" />
+          <Property Name="AmountSold_D_B_" Type="Double" />
+          <Property Name="AmountSold_G_B_" Type="Double" />
+          <Property Name="AmountPurchase_D_L_" Type="Double" />
+          <Property Name="AmountPurchase_G_L_" Type="Double" />
+          <Property Name="AmountPurchase_D_B_" Type="Double" />
+          <Property Name="AmountPurchase_G_B_" Type="Double" />
+          <Property Name="Balance_D_L_" Type="Double" />
+          <Property Name="Balance_G_L_" Type="Double" />
+          <Property Name="Balance_D_B_" Type="Double" />
+          <Property Name="Balance_G_B_" Type="Double" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="e_Bill_NO" />
+          </Key>
+          <Property Name="e_Bill_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Payment_Method" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Transfer_AC_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Transfer_AC_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Recieve_AC_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Recieve_AC_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Paid_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Payment_Customer" FromRole="Payment" ToRole="Customer" />
+          <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Purchase_Order_Payment" FromRole="Payment" ToRole="Purchase_Order" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gasohol95_Cost" Type="Double" />
+          <Property Name="Gasohol95_Price" Type="Double" />
+          <Property Name="Diesel_Cost" Type="Double" />
+          <Property Name="Diesel_Price" Type="Double" />
+        </EntityType>
+        <EntityType Name="Purchase_Order">
+          <Key>
+            <PropertyRef Name="PO_NO" />
+          </Key>
+          <Property Name="PO_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="e_Bill_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Location_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Staff_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gas_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Filling_time" Type="Time" Precision="0" />
+          <Property Name="Fuel_Amount" Type="Double" />
+          <Property Name="Order_Date" Type="DateTime" Precision="0" />
+          <Property Name="Deliver_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Purchase_Order_Customer" FromRole="Purchase_Order" ToRole="Customer" />
+          <NavigationProperty Name="Deliver" Relationship="Self.FK_Deliver_Purchase_Order" FromRole="Purchase_Order" ToRole="Deliver" />
+          <NavigationProperty Name="Depart_Location" Relationship="Self.FK_Purchase_Order_Depart_Location" FromRole="Purchase_Order" ToRole="Depart_Location" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Purchase_Order_Payment" FromRole="Purchase_Order" ToRole="Payment" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Purchase_Order_Staff" FromRole="Purchase_Order" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Staff_ID" />
+          </Key>
+          <Property Name="Staff_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Staff_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Staff_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Staff_Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Staff_Tel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Purchase_Order_Staff" FromRole="Staff" ToRole="Purchase_Order" />
+        </EntityType>
+        <EntityType Name="Transac">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Action" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Volume_D" Type="Double" />
+          <Property Name="Volume_G" Type="Double" />
+          <Property Name="Price_D" Type="Double" />
+          <Property Name="Price_G" Type="Double" />
+          <Property Name="Balance_D" Type="Double" />
+          <Property Name="Balance_G" Type="Double" />
+        </EntityType>
+        <EntityType Name="Transca">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Double" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Action" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Volume" Type="Double" />
+          <Property Name="Amount" Type="Double" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Truck_NO" />
+          </Key>
+          <Property Name="Truck_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="License_Plate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Capacity" Type="Double" />
+          <NavigationProperty Name="Deliver" Relationship="Self.FK_Deliver_Vehicle" FromRole="Vehicle" ToRole="Deliver" />
+        </EntityType>
+        <Association Name="FK_Payment_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Depart_Location">
+          <End Role="Depart_Location" Type="Self.Depart_Location" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depart_Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Driver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Driver_ID" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="Driver_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Purchase_Order">
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase_Order">
+              <PropertyRef Name="PO_NO" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="PO_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deliver_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="Deliver" Type="Self.Deliver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Truck_NO" />
+            </Principal>
+            <Dependent Role="Deliver">
+              <PropertyRef Name="Truck_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Depart_Location">
+          <End Role="Depart_Location" Type="Self.Depart_Location" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Depart_Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Payment">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="e_Bill_NO" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="e_Bill_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Staff_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CapstoneV3Entities9" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="Deliver" EntityType="Self.Deliver" />
+          <EntitySet Name="Depart_Location" EntityType="Self.Depart_Location" />
+          <EntitySet Name="Driver" EntityType="Self.Driver" />
+          <EntitySet Name="Expense" EntityType="Self.Expense" />
+          <EntitySet Name="Income" EntityType="Self.Income" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" />
+          <EntitySet Name="Price" EntityType="Self.Price" />
+          <EntitySet Name="Purchase_Order" EntityType="Self.Purchase_Order" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="Transac" EntityType="Self.Transac" />
+          <EntitySet Name="Transca" EntityType="Self.Transca" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" />
+          <AssociationSet Name="FK_Payment_Customer" Association="Self.FK_Payment_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Customer" Association="Self.FK_Purchase_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Depart_Location" Association="Self.FK_Deliver_Depart_Location">
+            <End Role="Depart_Location" EntitySet="Depart_Location" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Driver" Association="Self.FK_Deliver_Driver">
+            <End Role="Driver" EntitySet="Driver" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Purchase_Order" Association="Self.FK_Deliver_Purchase_Order">
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deliver_Vehicle" Association="Self.FK_Deliver_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Deliver" EntitySet="Deliver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Depart_Location" Association="Self.FK_Purchase_Order_Depart_Location">
+            <End Role="Depart_Location" EntitySet="Depart_Location" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Payment" Association="Self.FK_Purchase_Order_Payment">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Staff" Association="Self.FK_Purchase_Order_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CapstoneV3ModelStoreContainer" CdmEntityContainer="CapstoneV3Entities9">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Taxpayer_ID" ColumnName="Taxpayer_ID" />
+                <ScalarProperty Name="Taxpayer_Address" ColumnName="Taxpayer_Address" />
+                <ScalarProperty Name="Taxpayer_Title" ColumnName="Taxpayer_Title" />
+                <ScalarProperty Name="Taxpayer_Name" ColumnName="Taxpayer_Name" />
+                <ScalarProperty Name="Taxpayer_Surname" ColumnName="Taxpayer_Surname" />
+                <ScalarProperty Name="Customer_Title" ColumnName="Customer_Title" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Surname" ColumnName="Customer_Surname" />
+                <ScalarProperty Name="Customer_Tel" ColumnName="Customer_Tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deliver">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Deliver">
+              <MappingFragment StoreEntitySet="Deliver">
+                <ScalarProperty Name="Deliver_ID" ColumnName="Deliver_ID" />
+                <ScalarProperty Name="PO_NO" ColumnName="PO_NO" />
+                <ScalarProperty Name="Truck_NO" ColumnName="Truck_NO" />
+                <ScalarProperty Name="Driver_ID" ColumnName="Driver_ID" />
+                <ScalarProperty Name="Arr_Date" ColumnName="Arr_Date" />
+                <ScalarProperty Name="Arr_Time" ColumnName="Arr_Time" />
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Depart_Location">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Depart_Location">
+              <MappingFragment StoreEntitySet="Depart_Location">
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Sub_District" ColumnName="Sub_District" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="House_NO" ColumnName="House_NO" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Driver">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Driver">
+              <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="Driver_ID" ColumnName="Driver_ID" />
+                <ScalarProperty Name="Driver_Title" ColumnName="Driver_Title" />
+                <ScalarProperty Name="Driver_Name" ColumnName="Driver_Name" />
+                <ScalarProperty Name="Driver_Surname" ColumnName="Driver_Surname" />
+                <ScalarProperty Name="Driver_Tel" ColumnName="Driver_Tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expense">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Expense">
+              <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="Expense1" ColumnName="Expense" />
+                <ScalarProperty Name="Price_Per_day" ColumnName="Price_Per_day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Income">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Income">
+              <MappingFragment StoreEntitySet="Income">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Begin_D_L_" ColumnName="Begin_D(L)" />
+                <ScalarProperty Name="Begin_G_L_" ColumnName="Begin_G(L)" />
+                <ScalarProperty Name="Begin_D_B_" ColumnName="Begin_D(B)" />
+                <ScalarProperty Name="Begin_G_B_" ColumnName="Begin_G(B)" />
+                <ScalarProperty Name="AmountSold_D_L_" ColumnName="AmountSold_D(L)" />
+                <ScalarProperty Name="AmountSold_G_L_" ColumnName="AmountSold_G(L)" />
+                <ScalarProperty Name="AmountSold_D_B_" ColumnName="AmountSold_D(B)" />
+                <ScalarProperty Name="AmountSold_G_B_" ColumnName="AmountSold_G(B)" />
+                <ScalarProperty Name="AmountPurchase_D_L_" ColumnName="AmountPurchase_D(L)" />
+                <ScalarProperty Name="AmountPurchase_G_L_" ColumnName="AmountPurchase_G(L)" />
+                <ScalarProperty Name="AmountPurchase_D_B_" ColumnName="AmountPurchase_D(B)" />
+                <ScalarProperty Name="AmountPurchase_G_B_" ColumnName="AmountPurchase_G(B)" />
+                <ScalarProperty Name="Balance_D_L_" ColumnName="Balance_D(L)" />
+                <ScalarProperty Name="Balance_G_L_" ColumnName="Balance_G(L)" />
+                <ScalarProperty Name="Balance_D_B_" ColumnName="Balance_D(B)" />
+                <ScalarProperty Name="Balance_G_B_" ColumnName="Balance_G(B)" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="e_Bill_NO" ColumnName="e_Bill_NO" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Invoice_NO" ColumnName="Invoice_NO" />
+                <ScalarProperty Name="Payment_Method" ColumnName="Payment_Method" />
+                <ScalarProperty Name="Transfer_AC_Name" ColumnName="Transfer_AC_Name" />
+                <ScalarProperty Name="Transfer_AC_NO" ColumnName="Transfer_AC_NO" />
+                <ScalarProperty Name="Recieve_AC_Name" ColumnName="Recieve_AC_Name" />
+                <ScalarProperty Name="Recieve_AC_NO" ColumnName="Recieve_AC_NO" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Paid_Date" ColumnName="Paid_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Gasohol95_Cost" ColumnName="Gasohol95_Cost" />
+                <ScalarProperty Name="Gasohol95_Price" ColumnName="Gasohol95_Price" />
+                <ScalarProperty Name="Diesel_Cost" ColumnName="Diesel_Cost" />
+                <ScalarProperty Name="Diesel_Price" ColumnName="Diesel_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchase_Order">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Purchase_Order">
+              <MappingFragment StoreEntitySet="Purchase_Order">
+                <ScalarProperty Name="PO_NO" ColumnName="PO_NO" />
+                <ScalarProperty Name="e_Bill_NO" ColumnName="e_Bill_NO" />
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="Gas_type" ColumnName="Gas_type" />
+                <ScalarProperty Name="Filling_time" ColumnName="Filling_time" />
+                <ScalarProperty Name="Fuel_Amount" ColumnName="Fuel_Amount" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Deliver_Date" ColumnName="Deliver_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Staff_Title" ColumnName="Staff_Title" />
+                <ScalarProperty Name="Staff_Name" ColumnName="Staff_Name" />
+                <ScalarProperty Name="Staff_Surname" ColumnName="Staff_Surname" />
+                <ScalarProperty Name="Staff_Tel" ColumnName="Staff_Tel" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transac">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Transac">
+              <MappingFragment StoreEntitySet="Transac">
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Volume_D" ColumnName="Volume_D" />
+                <ScalarProperty Name="Volume_G" ColumnName="Volume_G" />
+                <ScalarProperty Name="Price_D" ColumnName="Price_D" />
+                <ScalarProperty Name="Price_G" ColumnName="Price_G" />
+                <ScalarProperty Name="Balance_D" ColumnName="Balance_D" />
+                <ScalarProperty Name="Balance_G" ColumnName="Balance_G" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transca">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Transca">
+              <MappingFragment StoreEntitySet="Transca">
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="CapstoneV3Model.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="Truck_NO" ColumnName="Truck_NO" />
+                <ScalarProperty Name="License_Plate" ColumnName="License_Plate" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
